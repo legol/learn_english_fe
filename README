@@ -1,0 +1,4 @@
+npm start
+
+cd ~/git_root/learn_english/
+hhvm -m server -c /etc/hhvm/server.ini

@@ -3,6 +3,8 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import { ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
+import { SentenceContainer } from './components/SentenceContainer.react.js'
+
 class App extends React.Component {
   render() {
     return (
@@ -74,6 +76,11 @@ class App extends React.Component {
         <Row className="show-border">
           <Col xs={12} md={8} className="show-border"><code>&lt;{'Col xs={12} md={8}'} /&gt;</code></Col>
           <Col xs={6} md={4} className="show-border"><code>&lt;{'Col xs={6} md={4}'} /&gt;</code></Col>
+        </Row>
+        <Row className="show-border">
+          <Col lg={20} className="show-border">
+            <SentenceContainer></SentenceContainer>
+          </Col>
         </Row>
       </Grid>
     );
