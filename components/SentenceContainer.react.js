@@ -1,17 +1,26 @@
 import React from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
-
 import { Utilities } from '../utilities/Utilities.js'
+import { Sentences } from './Sentences.react.js'
 
 class SentenceContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      is_loading: true,
+      content: (
+        <div>
+  			   Loading...
+        </div>
+      ),
+    };
+  }
 
-  test() {
-  	alert('calling Utilities');
+  componentWillMount() {
+    this.loadSentences();
+  }
 
+  loadSentences() {
   	var utilities = new Utilities();
-  	utilities.init();
-
-  	console.log(window.location.origin);
 
   	// utilities.post(
   	// 	window.location.origin + '/index.php?c=sentences&m=saveSentence',
@@ -22,31 +31,24 @@ class SentenceContainer extends React.Component {
 
     utilities.get(
   		'http://192.168.1.130:10001/index.php?c=sentences&m=getSentences',
-  		this.onSentenceSaved,
-  		this.onSaveSentenceError,
+  		(response) => {
+        this.setState({
+          is_loading: false,
+          content: (<Sentences data_source={response.sentences}/>),
+        });
+      },
+      (error) => {
+        alert('error');
+        console.log(error);
+      },
   	);
   }
 
-  onSentenceSaved(response) {
-  	alert('hello');
-
-    console.log(response);
-  }
-
-  onSaveSentenceError(response) {
-  	alert('error');
-  }
-
   render() {
-    this.test();
-
     return (
-      <Grid>
-        <Row className="show-border">
-          <Col lg={2} className="show-border">{'Col lg={2}'}</Col>
-          <Col lg={18} className="show-border">{'Col lg={18}'}</Col>
-        </Row>
-      </Grid>
+      <div>
+        {this.state.content}
+      </div>
     );
   }
 }
