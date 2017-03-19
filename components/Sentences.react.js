@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
+import { Sentence } from './Sentence.react.js'
 
 class Sentences extends React.Component {
   constructor(props) {
@@ -9,9 +10,16 @@ class Sentences extends React.Component {
   }
 
   _renderSentences() {
+    let sentences = this.props.data_source;
+
+    sentences = sentences.filter(sentence => sentence != null)
+      .map((sentence, idx) => {
+        return (<Sentence key={idx} data_source={sentence}/>);
+      });
+
     return (
       <div>
-        {JSON.stringify(this.props.data_source)}
+        {sentences}
       </div>
     );
   }

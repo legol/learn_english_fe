@@ -3,7 +3,9 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import { ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
+
 import { SentenceContainer } from './components/SentenceContainer.react.js'
+import { SentenceInput } from './components/SentenceInput.react.js'
 
 class App extends React.Component {
   render() {
@@ -80,6 +82,11 @@ class App extends React.Component {
         <Row className="show-border">
           <Col lg={20} className="show-border">
             <SentenceContainer></SentenceContainer>
+          </Col>
+        </Row>
+        <Row className="show-border">
+          <Col lg={20} className="show-border">
+            <SentenceInput></SentenceInput>
           </Col>
         </Row>
       </Grid>
