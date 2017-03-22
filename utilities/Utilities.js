@@ -34,7 +34,6 @@ class Utilities {
       data : _data,
       crossDomain: true,
       dataType: 'json', // incoming data type
-      contentType: "application/json; charset=utf-8", // outgoing data type
       async: true,
       type: "POST",
       timeout: 30000, // milliseconds

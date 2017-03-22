@@ -11,7 +11,7 @@ class Sentence extends React.Component {
   _renderSentence() {
     return (
       <div className="show-border">
-        {JSON.stringify(this.props.data_source)}
+        {this.props.data_source}
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { InputGroup, FormControl } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import { Utilities } from '../utilities/Utilities.js'
 
 class SentenceInput extends React.Component {
   constructor(props) {
@@ -12,12 +13,34 @@ class SentenceInput extends React.Component {
   render() {
     return (
       <InputGroup>
-        <FormControl type="text" />
+        <FormControl id="new_sentence" type="text" />
         <InputGroup.Button>
-          <Button>Enter</Button>
+          <Button onClick={this.handleSaveBtnClicked}>Save</Button>
         </InputGroup.Button>
       </InputGroup>
     );
+  }
+
+  handleSaveBtnClicked() {
+    var utilities = new Utilities();
+
+    utilities.post(
+  		'http://192.168.1.130:10001/index.php?c=sentences&m=saveSentence',
+      {
+        input: $("#new_sentence").val(),
+      },
+  		(response) => {
+        if (response.error_code == 0) {
+          alert('saved!');
+        } else {
+          alert(response);
+        }
+      },
+      (error) => {
+        alert('error');
+        console.log(error);
+      },
+  	);
   }
 }
 
